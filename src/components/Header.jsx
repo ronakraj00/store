@@ -65,7 +65,7 @@ export function ListCategories({ categories }) {
                             )}
                         >
                             <div className="text-sm font-medium leading-none">
-                                {category}
+                                {category.toUpperCase()}
                             </div>
                         </a>
                     </NavigationMenuLink>
