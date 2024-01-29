@@ -1,5 +1,8 @@
+import Header from "./components/header";
+import { Button } from "./components/ui/button";
+
 function App() {
-    return <>Hello</>;
+    return <><Header/></>;
 }
 
 export default App;
