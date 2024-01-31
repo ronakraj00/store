@@ -9,6 +9,7 @@ import {
 
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 function Hero() {
     const upsplashApi =
@@ -34,9 +35,11 @@ function Hero() {
                         Amazing.
                     </span>
                 </p>
+                <Link to={"shop/All"}>
                 <Button variant="outline" size="lg" className="">
                     Shop Now
                 </Button>
+                </Link>
             </div>
             <Carousel
                 opts={{

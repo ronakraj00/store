@@ -9,7 +9,7 @@ import {
 import { Button } from "./ui/button";
 import { useState } from "react";
 
-function ProductCard({ title, price, image, description, setCart }) {
+function ProductCard({ id, title, price, image, description, setCart }) {
     const [descriptionLine, setDescriptionLine] = useState(false);
 
     return (
@@ -25,7 +25,7 @@ function ProductCard({ title, price, image, description, setCart }) {
             </CardHeader>
             <CardDescription
                 className={`cursor-pointer px-6 line-clamp-${
-                    descriptionLine ? 0 : 1
+                    descriptionLine ? 0 : 2
                 }`}
             >
                 {description}
@@ -35,16 +35,25 @@ function ProductCard({ title, price, image, description, setCart }) {
                 <Button
                     onClick={(e) => {
                         e.stopPropagation();
-                        setCart((cart) => [
-                            ...cart,
-                            {
-                                title,
-                                price,
-                                image,
-                                description,
-                                time: Date.now,
-                            },
-                        ]);
+                        setCart((cart) => {
+                            let found = cart.find((item) => item.id === id);
+                            if (found) {
+                                found.quantity++;
+                                return cart;
+                            } else {
+                                return [
+                                    ...cart,
+                                    {
+                                        id,
+                                        title,
+                                        price,
+                                        image,
+                                        quantity: 1,
+                                        addedOn: Date.now(),
+                                    },
+                                ];
+                            }
+                        });
                     }}
                     variant="outline"
                 >

@@ -23,7 +23,7 @@ function Header({cartLength}) {
                             asChild
                             className={navigationMenuTriggerStyle()}
                         >
-                            <Link to="/docs">Home</Link>
+                            <Link to="/">Home</Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
@@ -31,7 +31,7 @@ function Header({cartLength}) {
                             asChild
                             className={navigationMenuTriggerStyle()}
                         >
-                            <Link to="/docs">Cart <sup className="p-1">{cartLength}</sup></Link>
+                            <Link to="/cart">Cart <sup className="p-1">{cartLength}</sup></Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 
@@ -59,7 +59,7 @@ export function ListCategories({ categories }) {
             {categories.map((category) => (
                 <li key={category}>
                     <NavigationMenuLink asChild>
-                        <a
+                        <Link to={"/shop/"+category}
                             className={cn(
                                 "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                             )}
@@ -67,7 +67,7 @@ export function ListCategories({ categories }) {
                             <div className="text-sm font-medium leading-none">
                                 {category.toUpperCase()}
                             </div>
-                        </a>
+                        </Link>
                     </NavigationMenuLink>
                 </li>
             ))}
