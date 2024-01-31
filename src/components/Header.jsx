@@ -11,7 +11,7 @@ import useCategories from "@/hooks/useCategories";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 
-function Header() {
+function Header({cartLength}) {
     const categories = useCategories();
 
     return (
@@ -31,7 +31,7 @@ function Header() {
                             asChild
                             className={navigationMenuTriggerStyle()}
                         >
-                            <Link to="/docs">Cart</Link>
+                            <Link to="/docs">Cart <sup className="p-1">{cartLength}</sup></Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 
