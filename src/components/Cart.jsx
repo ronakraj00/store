@@ -18,12 +18,12 @@ function Cart() {
     <main className="flex flex-col gap-3">
       {cart.map((item)=>{
         return(
-        <Card key={item.id} className="mx-6 flex items-center justify-center">
+        <Card key={item.id} className="w-max mx-6 flex items-center justify-center">
         <CardContent>
-          <img src={item.image} alt="" className="w-32 p-4"/>
+          <img src={item.image} alt="" className="w-16 p-4"/>
         </CardContent>
         <CardHeader>
-          <CardTitle>{item.title}</CardTitle>
+          <CardTitle className="w-[20ch]">{item.title}</CardTitle>
         </CardHeader>
         <CardDescription>
           <p>{item.quantity}</p>
