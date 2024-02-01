@@ -58,7 +58,7 @@ function Shop({ category = "" }) {
 export function SkeletonCard() {
     return (
         <div className="flex flex-col space-y-3">
-            <Skeleton className="h-[400px] w-[400px] rounded-xl" />
+            <Skeleton className="h-[300px] max-sm:w-[90%] w-[min(70ch,80%)] rounded-xl" />
             <div className="space-y-2">
                 <Skeleton className="h-4 w-[250px]" />
                 <Skeleton className="h-4 w-[200px]" />

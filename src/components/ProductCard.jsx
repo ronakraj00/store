@@ -38,16 +38,16 @@ function ProductCard({ id, title, price, image, description, setCart }) {
     return (
         <Card
             onClick={() => setDescriptionLine((value) => !value)}
-            className="bg-gray-100 max-sm:w-[90%] w-[min(40ch,80%)]  p-4 transition-shadow duration-1000"
+            className="bg-gray-100 max-sm:w-[90%] w-[min(35ch,80%)] p-4 transition-shadow duration-1000"
         >
-            <CardContent className="flex justify-center w-full bg-white rounded-md p-4">
+            <CardContent className="flex justify-center w-full bg-white rounded-md p-2">
                 <img src={image} alt={title} className="max-w-32" />
             </CardContent>
             <CardHeader>
                 <CardTitle>{title}</CardTitle>
             </CardHeader>
             <CardDescription
-                className={`cursor-pointer px-6 ${
+                className={`cursor-pointer ${
                     descriptionLine ? "line-clamp-none" : "line-clamp-2"
                 }`}
             >
