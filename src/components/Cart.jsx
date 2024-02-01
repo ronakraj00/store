@@ -10,7 +10,7 @@ import { Link, useOutletContext } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-import ShoppingImage from "../../public/images/shoppingImage.jpg"
+import ShoppingImage from "../assets/images/shoppingImage.jpg"
 
 function Cart() {
     const [cart, setCart] = useOutletContext();

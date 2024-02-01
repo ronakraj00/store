@@ -1,7 +1,7 @@
 import { useAllProducts, useProductsByCategory } from "@/hooks/useAllProducts";
 import ProductCard from "./ProductCard";
 import { useOutletContext, useParams } from "react-router-dom";
-import manyPeopleShopping from "../../public/images/many_people_shopping.jpg";
+import manyPeopleShopping from "../assets/images/many_people_shopping.jpg";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
