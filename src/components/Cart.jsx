@@ -16,15 +16,17 @@ function Cart() {
     const [cart, setCart] = useOutletContext();
     console.log("cart fro dfsajfal", cart);
 
+
+    const handleRemoveFromCart=(id)=>{
+        setCart(cart=>cart.filter(item=>item.id!=id))
+    }
+
     return cart.length ? (
         <main className="flex flex-col gap-3 justify-center items-center mb-64">
             <div className="text-xl font-mono">Your cart</div>
             {cart.map((item) => {
                 return (
-                    <Card
-                        key={item.id}
-                        className="w-max flex flex-wrap"
-                    >
+                    <Card key={item.id} className="w-max flex flex-wrap">
                         <div className="p-2">
                             <CardContent>
                                 <img
@@ -57,6 +59,12 @@ function Cart() {
                                 className="w-20 p-1 font-mono text-lg text-center"
                                 value={item.quantity}
                                 onChange={(e) => {
+                                    if (
+                                        e.target.value > 10 ||
+                                        e.target.value < 1
+                                    ) {
+                                        return;
+                                    }
                                     setCart((cart) => {
                                         let found = cart.find(
                                             (ele) => ele.id == item.id
@@ -66,7 +74,7 @@ function Cart() {
                                     });
                                 }}
                             />
-                            <Button>Remove</Button>
+                            <Button onClick={()=>handleRemoveFromCart(item.id)}>Remove</Button>
                         </CardFooter>
                     </Card>
                 );
@@ -84,7 +92,7 @@ function CheckOut({ cart }) {
             <p>
                 Total Price{" "}
                 <span className="border-b-4 border-yellow-400">
-                    {cart
+                    ${cart
                         .reduce(
                             (total, item) => item.quantity * item.price + total,
                             0
