@@ -26,19 +26,19 @@ function Hero() {
     return (
         <main className="relative">
             <div
-                className="absolute z-[1] top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 flex border-4 mx-4 backdrop-blur-sm
+                className="absolute z-[1] top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 flex border-4 mx-4 drop-shadow-[2px_2px_rgba(255,255,255,1)] animate-in
                 flex-col p-4 items-center"
             >
-                <p className="font-extrabold text-center font-mono text-6xl py-4 drop-shadow-2xl">
+                <p className="font-extrabold text-center font-mono text-6xl py-4">
                     This Season <br /> Buy something <br />
                     <span className="text-transparent bg-gradient-to-r bg-clip-text from-blue-500 to-green-500">
                         Amazing.
                     </span>
                 </p>
                 <Link to={"shop/All"}>
-                <Button variant="outline" size="lg" className="">
-                    Shop Now
-                </Button>
+                    <Button size="lg" className="text-lg">
+                        Shop Now
+                    </Button>
                 </Link>
             </div>
             <Carousel

@@ -12,10 +12,33 @@ import { useState } from "react";
 function ProductCard({ id, title, price, image, description, setCart }) {
     const [descriptionLine, setDescriptionLine] = useState(false);
 
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
+        setCart((cart) => {
+            let found = cart.find((item) => item.id === id);
+            if (found) {
+                found.quantity++;
+                return cart;
+            } else {
+                return [
+                    ...cart,
+                    {
+                        id,
+                        title,
+                        price,
+                        image,
+                        quantity: 1,
+                        addedOn: Date.now(),
+                    },
+                ];
+            }
+        });
+    };
+
     return (
         <Card
             onClick={() => setDescriptionLine((value) => !value)}
-            className="bg-gray-100 max-sm:w-[90%] w-[min(40ch,80%)]  p-4 hover:shadow-sm transition-shadow duration-1000"
+            className="bg-gray-100 max-sm:w-[90%] w-[min(40ch,80%)]  p-4 transition-shadow duration-1000"
         >
             <CardContent className="flex justify-center w-full bg-white rounded-md p-4">
                 <img src={image} alt={title} className="max-w-32" />
@@ -24,39 +47,15 @@ function ProductCard({ id, title, price, image, description, setCart }) {
                 <CardTitle>{title}</CardTitle>
             </CardHeader>
             <CardDescription
-                className={`cursor-pointer px-6 line-clamp-${
-                    descriptionLine ? 0 : 2
+                className={`cursor-pointer px-6 ${
+                    descriptionLine ? "line-clamp-none" : "line-clamp-2"
                 }`}
             >
                 {description}
             </CardDescription>
             <CardFooter className="p-4 flex justify-between">
                 <p>${price}</p>
-                <Button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setCart((cart) => {
-                            let found = cart.find((item) => item.id === id);
-                            if (found) {
-                                found.quantity++;
-                                return cart;
-                            } else {
-                                return [
-                                    ...cart,
-                                    {
-                                        id,
-                                        title,
-                                        price,
-                                        image,
-                                        quantity: 1,
-                                        addedOn: Date.now(),
-                                    },
-                                ];
-                            }
-                        });
-                    }}
-                    variant="outline"
-                >
+                <Button onClick={(e) => handleAddToCart(e)} variant="outline">
                     Add To Cart
                 </Button>
             </CardFooter>
