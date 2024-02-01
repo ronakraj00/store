@@ -40,7 +40,7 @@ function Hero() {
                 <CarouselContent>
                     {banners.map((banner) => (
                         <CarouselItem key={banner}>
-                            <div className="h-svh flex  justify-center items-center object-cover">
+                            <div className="h-lvh flex  justify-center items-center object-cover">
                                 <img
                                     src={banner}
                                     className="w-full h-full flex justify-center items-center object-cover"
