@@ -11,16 +11,25 @@ function Shop({ category = "" }) {
     const [loading,products]=useProductsByCategory(category);
     console.log(loading,products)
     const [cart, setCart] = useOutletContext();
+
+    const pattern = {
+        backgroundColor: "#ffffff",
+        opacity: 0.8,
+        backgroundImage:
+            "radial-gradient(#444cf7 0.5px, #ffffff 0.5px)",
+        backgroundSize: "20px 20px",
+        backgroundPosition: "10px 10px",
+    };
     return (
         <>
-            <main className="flex">
+            <main className="flex" style={pattern}>
                 {/* filters */}
                 {/* <div className="max-sm:hidden">filters</div> */}
                 {/* products listing */}
                 <div className="flex-grow-[5]">
                     {/* category name */}
                     <div className="flex justify-center text-center text-2xl font-bold">
-                        <p className="text-center w-max rounded-lg border-2 p-3 my-2 shadow-lg capitalize">
+                        <p className="bg-white font-serif text-center w-max rounded-lg border-2 p-3 my-2 shadow-lg capitalize">
                             {category || "All Products"}
                         </p>
                     </div>
