@@ -8,15 +8,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 function Shop({ category = "" }) {
     let params = useParams();
     category = params.category;
-    const [loading,products]=useProductsByCategory(category);
-    console.log(loading,products)
+    const [loading, products] = useProductsByCategory(category);
+    console.log(loading, products);
     const [cart, setCart] = useOutletContext();
 
     const pattern = {
         backgroundColor: "#ffffff",
         opacity: 0.8,
-        backgroundImage:
-            "radial-gradient(#444cf7 0.5px, #ffffff 0.5px)",
+        backgroundImage: "radial-gradient(#444cf7 0.5px, #ffffff 0.5px)",
         backgroundSize: "20px 20px",
         backgroundPosition: "10px 10px",
         backgroundAttachment: "fixed",
@@ -37,15 +36,18 @@ function Shop({ category = "" }) {
                     {/* products */}
                     {loading ? (
                         <div className=" p-4 my-4 flex flex-wrap gap-8 justify-center items-center">
-                            {Array(5).fill(undefined).map((ele, index) => (
-                                <SkeletonCard key={index} />
-                            ))}
+                            {Array(5)
+                                .fill(undefined)
+                                .map((ele, index) => (
+                                    <SkeletonCard key={index} />
+                                ))}
                         </div>
                     ) : (
                         <div className="p-8 flex flex-wrap justify-center items-start  gap-4 max-sm:justify-center">
                             {products.map((product) => {
                                 return (
                                     <ProductCard
+                                        cart={cart}
                                         setCart={setCart}
                                         key={product.id}
                                         {...product}

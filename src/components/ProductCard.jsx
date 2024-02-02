@@ -9,7 +9,7 @@ import {
 import { Button } from "./ui/button";
 import { useState } from "react";
 
-function ProductCard({ id, title, price, image, description, setCart }) {
+function ProductCard({ id, title, price, image, description, cart, setCart }) {
     const [descriptionLine, setDescriptionLine] = useState(false);
 
     const handleAddToCart = (e) => {
@@ -35,6 +35,8 @@ function ProductCard({ id, title, price, image, description, setCart }) {
         });
     };
 
+    const isPresentInCart = cart.some((item) => item.id == id)
+
     return (
         <Card
             onClick={() => setDescriptionLine((value) => !value)}
@@ -55,9 +57,11 @@ function ProductCard({ id, title, price, image, description, setCart }) {
             </CardDescription>
             <CardFooter className="p-4 flex justify-between">
                 <p>${price}</p>
-                <Button onClick={(e) => handleAddToCart(e)} variant="outline">
-                    Add To Cart
-                </Button>
+                
+                <Button
+                    onClick={(e) => handleAddToCart(e)}
+                    variant={isPresentInCart?"default":"outline"}
+                >{isPresentInCart?"Added To Cart":"Add To Cart"}</Button>
             </CardFooter>
         </Card>
     );
