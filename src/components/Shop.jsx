@@ -19,6 +19,7 @@ function Shop({ category = "" }) {
             "radial-gradient(#444cf7 0.5px, #ffffff 0.5px)",
         backgroundSize: "20px 20px",
         backgroundPosition: "10px 10px",
+        backgroundAttachment: "fixed",
     };
     return (
         <>
