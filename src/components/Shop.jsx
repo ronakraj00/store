@@ -4,7 +4,8 @@ import { useOutletContext, useParams } from "react-router-dom";
 import manyPeopleShopping from "../assets/images/many_people_shopping.jpg";
 
 import { Skeleton } from "@/components/ui/skeleton";
-
+import { pattern } from "../lib/utils";
+import Heading from "./Heading";
 function Shop({ category = "" }) {
     let params = useParams();
     category = params.category;
@@ -12,14 +13,6 @@ function Shop({ category = "" }) {
     console.log(loading, products);
     const [cart, setCart] = useOutletContext();
 
-    const pattern = {
-        backgroundColor: "#ffffff",
-        opacity: 0.8,
-        backgroundImage: "radial-gradient(#444cf7 0.5px, #ffffff 0.5px)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "10px 10px",
-        backgroundAttachment: "fixed",
-    };
     return (
         <>
             <main className="flex" style={pattern}>
@@ -28,11 +21,7 @@ function Shop({ category = "" }) {
                 {/* products listing */}
                 <div className="flex-grow-[5]">
                     {/* category name */}
-                    <div className="flex justify-center text-center text-2xl font-bold">
-                        <p className="bg-white font-serif text-center w-max rounded-lg border-2 p-3 my-2 shadow-lg capitalize">
-                            {category || "All Products"}
-                        </p>
-                    </div>
+                    <Heading title={category} />
                     {/* products */}
                     {loading ? (
                         <div className=" p-4 my-4 flex flex-wrap gap-8 justify-center items-center">

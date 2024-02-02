@@ -8,9 +8,10 @@ import {
 } from "@/components/ui/card";
 import { Link, useOutletContext } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import {pattern} from "../lib/utils"
 
 import ShoppingImage from "../assets/images/shoppingImage.jpg";
+import Heading from "./Heading";
 
 function Cart() {
     const [cart, setCart] = useOutletContext();
@@ -38,12 +39,8 @@ function Cart() {
     };
 
     return cart.length ? (
-        <main className="flex flex-col gap-3 justify-center items-center mb-64">
-            <div className="flex justify-center text-center text-2xl font-bold">
-                <p className="text-center w-max rounded-lg border-2 p-3 my-2 shadow-lg capitalize">
-                    {"Your Cart"}
-                </p>
-            </div>
+        <main style={pattern} className="min-h-svh flex flex-col gap-3 items-center mb-64">
+            <Heading title={"Your Cart"}/>
             {cart.map((item) => {
                 return (
                     <Card key={item.id} className="w-max flex flex-wrap">
