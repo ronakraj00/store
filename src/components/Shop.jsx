@@ -15,13 +15,13 @@ function Shop({ category = "" }) {
         <>
             <main className="flex">
                 {/* filters */}
-                <div className="max-sm:hidden">filters</div>
+                {/* <div className="max-sm:hidden">filters</div> */}
                 {/* products listing */}
                 <div className="flex-grow-[5]">
                     {/* category name */}
                     <div className="flex justify-center text-center text-2xl font-bold">
                         <p className="text-center w-max rounded-lg border-2 p-3 my-2 shadow-lg capitalize">
-                            {category || "All"}
+                            {category || "All Products"}
                         </p>
                     </div>
                     {/* products */}
