@@ -9,10 +9,10 @@ function App() {
     let cartLength = cart.length;
 
     return (
-        <div className="mt-10">
+        <>
             <Header cartLength={cartLength} />
-            {<Outlet context={[cart,setCart]}/>}
-        </div>
+            {<Outlet context={[cart, setCart]} />}
+        </>
     );
 }
 

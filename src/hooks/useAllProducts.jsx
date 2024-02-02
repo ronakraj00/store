@@ -7,7 +7,7 @@ function useAllProducts(limit = null) {
         fetch(`https://fakestoreapi.com/products?limit=${limit || ""}`)
             .then((res) => res.json())
             .then((json) => setProducts(json));
-    });
+    },[limit]);
     return products;
 }
 
@@ -22,16 +22,19 @@ function useProductsByCategory(category = null, limit = null) {
         category = null;
     }
     const [products, setProducts] = useState([]);
+    const [loading,setLoading]=useState(true);
     useEffect(() => {
+        setLoading(true);
         fetch(
             `https://fakestoreapi.com/products/${
                 category ? "category/" + category : ""
             }?limit=${limit || ""}`
         )
-            .then((res) => res.json())
+            .then((res) => {setLoading(false)
+                return res.json()})
             .then((json) => setProducts(json));
-    });
-    return products;
+    },[category,limit]);
+    return [loading,products];
 }
 
 export { useAllProducts, useProductsByCategory };

@@ -8,11 +8,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 function Shop({ category = "" }) {
     let params = useParams();
     category = params.category;
-    console.log(category);
-    const products = useProductsByCategory(category);
+    const [loading,products]=useProductsByCategory(category);
+    console.log(loading,products)
     const [cart, setCart] = useOutletContext();
-    console.log("set cart", setCart);
-    console.log(products);
     return (
         <>
             <main className="flex">
@@ -27,7 +25,7 @@ function Shop({ category = "" }) {
                         </p>
                     </div>
                     {/* products */}
-                    {products.length == 0 ? (
+                    {loading ? (
                         <div className=" p-4 my-4 flex flex-wrap gap-8 justify-center items-center">
                             {Array(5).fill(undefined).map((ele, index) => (
                                 <SkeletonCard key={index} />
