@@ -16,14 +16,34 @@ function Cart() {
     const [cart, setCart] = useOutletContext();
     console.log("cart fro dfsajfal", cart);
 
+    const handleRemoveFromCart = (id) => {
+        setCart((cart) => cart.filter((item) => item.id != id));
+    };
 
-    const handleRemoveFromCart=(id)=>{
-        setCart(cart=>cart.filter(item=>item.id!=id))
-    }
+    const IncreamentOrDecrement = (buttonType, id) => {
+        console.log(buttonType, id);
+        setCart((cart) => {
+            let found = cart.find((ele) => ele.id == id);
+            const calculation =
+                buttonType == "increment"
+                    ? found.quantity + 1
+                    : found.quantity - 1;
+            if (calculation > 10 || calculation < 1) {
+                return [...cart];
+            } else {
+                found.quantity = calculation;
+                return [...cart];
+            }
+        });
+    };
 
     return cart.length ? (
         <main className="flex flex-col gap-3 justify-center items-center mb-64">
-            <div className="text-xl font-mono">Your cart</div>
+            <div className="flex justify-center text-center text-2xl font-bold">
+                <p className="text-center w-max rounded-lg border-2 p-3 my-2 shadow-lg capitalize">
+                    {"Your Cart"}
+                </p>
+            </div>
             {cart.map((item) => {
                 return (
                     <Card key={item.id} className="w-max flex flex-wrap">
@@ -52,29 +72,46 @@ function Cart() {
                             </CardDescription>
                         </div>
                         <CardFooter className="flex flex-col justify-end gap-2 pb-2">
-                            <Input
-                                min="1"
-                                max="5"
-                                type="number"
-                                className="w-20 p-1 font-mono text-lg text-center"
-                                value={item.quantity}
-                                onChange={(e) => {
-                                    if (
-                                        e.target.value > 10 ||
-                                        e.target.value < 1
-                                    ) {
-                                        return;
+                            <div className="flex items-center gap-1">
+                                <Button
+                                    variant="outline"
+                                    className="p-2 rounded-full h-8 w-8 font-mono font-bold text-lg"
+                                    onClick={() =>
+                                        IncreamentOrDecrement(
+                                            "decrement",
+                                            item.id
+                                        )
                                     }
-                                    setCart((cart) => {
-                                        let found = cart.find(
-                                            (ele) => ele.id == item.id
-                                        );
-                                        found.quantity = e.target.value;
-                                        return [...cart];
-                                    });
-                                }}
-                            />
-                            <Button onClick={()=>handleRemoveFromCart(item.id)}>Remove</Button>
+                                >
+                                    -
+                                </Button>
+                                <div
+                                    min="1"
+                                    max="5"
+                                    type="number"
+                                    className="p-1 font-mono text-lg text-center appearance-none"
+                                    value={item.quantity}
+                                >
+                                    {item.quantity}
+                                </div>
+                                <Button
+                                    variant="outline"
+                                    className="p-2 rounded-full h-8 w-8 font-mono font-bold text-lg"
+                                    onClick={() =>
+                                        IncreamentOrDecrement(
+                                            "increment",
+                                            item.id
+                                        )
+                                    }
+                                >
+                                    +
+                                </Button>
+                            </div>
+                            <Button
+                                onClick={() => handleRemoveFromCart(item.id)}
+                            >
+                                Remove
+                            </Button>
                         </CardFooter>
                     </Card>
                 );
@@ -92,7 +129,8 @@ function CheckOut({ cart }) {
             <p>
                 Total Price{" "}
                 <span className="border-b-4 border-yellow-400">
-                    ${cart
+                    $
+                    {cart
                         .reduce(
                             (total, item) => item.quantity * item.price + total,
                             0
