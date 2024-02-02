@@ -15,10 +15,10 @@ function Header({cartLength}) {
     const categories = useCategories();
 
     return (
-        <header className="mx-auto w-full p-2 scroll-pt-4 relative bg-gradient-to-tr from-red-100 to-yellow-100 pt-12">
+        <header className="mx-auto w-full p-2 scroll-pt-4 relative pt-12">
             <NavigationMenu className=" fixed mt-2 top-0 left-1/2 transform -translate-x-1/2">
                 <NavigationMenuList>
-                    <NavigationMenuItem className="shadow-lg">
+                    <NavigationMenuItem className="shadow-md">
                         <NavigationMenuLink
                             asChild
                             className={navigationMenuTriggerStyle()}
@@ -26,7 +26,7 @@ function Header({cartLength}) {
                             <Link to="/">Home</Link>
                         </NavigationMenuLink>
                     </NavigationMenuItem>
-                    <NavigationMenuItem className="shadow-lg">
+                    <NavigationMenuItem className="shadow-md">
                         <NavigationMenuLink
                             asChild
                             className={navigationMenuTriggerStyle()}
@@ -35,7 +35,7 @@ function Header({cartLength}) {
                         </NavigationMenuLink>
                     </NavigationMenuItem>
 
-                    <NavigationMenuItem className="shadow-lg"> 
+                    <NavigationMenuItem className="shadow-md"> 
                         <NavigationMenuTrigger>
                             Categories
                         </NavigationMenuTrigger>
