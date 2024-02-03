@@ -6,12 +6,17 @@ import manyPeopleShopping from "../assets/images/many_people_shopping.jpg";
 import { Skeleton } from "@/components/ui/skeleton";
 import { pattern } from "../lib/utils";
 import Heading from "./Heading";
+import { useEffect } from "react";
 function Shop({ category = "" }) {
     let params = useParams();
     category = params.category;
     const [loading, products] = useProductsByCategory(category);
     console.log(loading, products);
     const [cart, setCart] = useOutletContext();
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     return (
         <>

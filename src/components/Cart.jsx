@@ -12,10 +12,15 @@ import {pattern} from "../lib/utils"
 
 import ShoppingImage from "../assets/images/shoppingImage.jpg";
 import Heading from "./Heading";
+import { useEffect } from "react";
 
 function Cart() {
     const [cart, setCart] = useOutletContext();
     console.log("cart fro dfsajfal", cart);
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     const handleRemoveFromCart = (id) => {
         setCart((cart) => cart.filter((item) => item.id != id));
