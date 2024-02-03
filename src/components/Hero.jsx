@@ -10,6 +10,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Hero() {
     const upsplashApi =
@@ -22,6 +23,11 @@ function Hero() {
         "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODczOTN8MHwxfGFsbHx8fHx8fHx8fDE3MDY1MzQ2NTR8&ixlib=rb-4.0.3&q=80&w=1080",
         "https://images.unsplash.com/photo-1542291026-7eec264c27ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0ODczOTN8MHwxfGFsbHx8fHx8fHx8fDE3MDY1MzQ4Njd8&ixlib=rb-4.0.3&q=80&w=1080",
     ];
+
+
+    useEffect(()=>{
+        window.scrollTo(0,document.body.scrollHeight)
+    })
 
     return (
         <main className="relative h-lvh overflow-hidden">
@@ -49,6 +55,8 @@ function Hero() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+                <CarouselNext className="fixed z-10 right-4"/>
+                <CarouselPrevious className="fixed z-10 left-4"/>
             </Carousel>
         </main>
     );
@@ -57,10 +65,10 @@ function Hero() {
 function ShopNow() {
     return (
         <div
-            className="absolute z-[1] top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 flex border-4 drop-shadow-[2px_2px_rgba(255,255,255,1)] animate-in
+            className="absolute z-[1] top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 flex border-4  animate-in
                 flex-col p-4 items-center"
         >
-            <p className="font-extrabold text-center font-mono text-6xl py-4">
+            <p className="font-extrabold text-center font-mono text-6xl py-4 drop-shadow-[2px_2px_rgba(255,255,255,1)]">
                 This Season <br /> Buy something <br />
                 <span className="text-transparent bg-gradient-to-r bg-clip-text from-blue-500 to-green-500">
                     Amazing.
