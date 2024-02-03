@@ -27,7 +27,7 @@ function Hero() {
 
     useEffect(()=>{
         window.scrollTo(0,document.body.scrollHeight)
-    })
+    },[])
 
     return (
         <main className="relative h-lvh overflow-hidden">
